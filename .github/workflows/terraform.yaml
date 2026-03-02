@@ -3,7 +3,7 @@ name: Terraform Azure Deploy
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
 
 jobs:
