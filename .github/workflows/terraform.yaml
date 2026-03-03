@@ -1,59 +1,39 @@
-name: Terraform CI/CD
+name: Terraform Azure Deployment
 
 on:
   push:
     branches:
-      - master
+      - main
+  pull_request:
 
 jobs:
   terraform:
     name: Terraform
     runs-on: ubuntu-latest
+
     env:
       TF_CLOUD_TOKEN: ${{ secrets.TF_CLOUD_TOKEN }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
     steps:
-      # Step 1: Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Setup Terraform CLI
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.5.7
 
-      # Step 3: Terraform Init (with Terraform Cloud backend)
       - name: Terraform Init
-        run: terraform init -input=false
+        run: terraform init
 
-      # Step 4: Validate Terraform files
       - name: Terraform Validate
         run: terraform validate
 
-      # Step 5: Format check
-      - name: Terraform Format Check
-        run: terraform fmt -check
-
-      # Step 6: Terraform Plan
       - name: Terraform Plan
-        id: plan
-        run: terraform plan -out=tfplan -input=false
+        run: terraform plan -out=tfplan
 
-      # Step 7: Terraform Apply (only on main branch push)
-      - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -input=false tfplan
-
-      # Step 8: Optional: Output private SSH key (sensitive)
-      - name: Show Private SSH Key
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: |
-          echo "Private key (sensitive output):"
-          terraform output -raw private_key_pem
-        env:
-          TF_CLOUD_TOKEN: ${{ secrets.TF_CLOUD_TOKEN }}
+      - name: Terraform Apply (only on main branch)
+        if: github.ref == 'refs/heads/main'
+        run: terraform apply -auto-approve tfplan
