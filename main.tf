@@ -1,3 +1,11 @@
+provider "azurerm" {
+  features {}
+  subscription_id = "19d29441-5197-430a-8222-5c6ff754c19c"
+  client_id       = "6bff5a3c-9fd7-4c26-b1f4-abb742401a69"
+  client_secret   = "LXD8Q~RD9dqb9LAxM4XA7qeHrBUgFQ_KVUxZXc57"
+  tenant_id       = "d78f5646-c67d-4733-aefe-813d1b496ae9"
+}
+
 variable "prefix" {
   default = "tfvmex"
 }
