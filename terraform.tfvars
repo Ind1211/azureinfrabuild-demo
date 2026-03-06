@@ -1,6 +1,10 @@
-location            = "East US2"
-vm_name             = "prod-ubuntu-vm"
-vm_size             = "Standard_D2s_v3"
-allowed_ssh_cidr    = "YOUR_PUBLIC_IP/32"
-create_public_ip    = true
-use_cloud_init      = true
+ARM_CLIENT_ID="6bff5a3c-9fd7-4c26-b1f4-abb742401a69"
+ARM_CLIENT_SECRET = "Qso8Q~a4_TEtlpNPXc_E4fEM-23icLTXK5OMnbqW"
+ARM_SUBSCRIPTION_ID = "19d29441-5197-430a-8222-5c6ff754c19c"
+ARM_TENANT_ID = "d78f5646-c67d-4733-aefe-813d1b496ae9"
+azurevm_rg = "azurevm-rg"
+azurevm_location = "US EAST 2"
+azurevm_virtual_network = "azurevm-vnet"
+azurevm_subnet = "azurevm-subnet"
+azurevm_network_interface = "azurevm-nic"
+azurevm_virtual_machine = "azurevm-vm"

@@ -1,52 +1,62 @@
-variable "resource_group_name" {
-  default = "azurevm-ubuntu-rg"
+variable "ARM_CLIENT_ID" {
+  description = "The Client ID of the Service Principal used for authentication with Azure."
+  type        = string
+  
 }
 
-variable "location" {
-  default = "East US 2"
+variable "ARM_CLIENT_SECRET" {
+  description = "The Client Secret of the Service Principal used for authentication with Azure."
+  type        = string
 }
 
-variable "vm_name" {
-  default = "ubuntu-vm"
+variable "ARM_SUBSCRIPTION_ID" {
+  description = "The Subscription ID of the Azure subscription to use."
+  type        = string
 }
 
-variable "vm_size" {
-  default = "Standard_D2s_v3"
+variable "ARM_TENANT_ID" {
+  description = "The Tenant ID of the Azure Active Directory."
+  type        = string
 }
 
-variable "admin_username" {
-  default = "azureuser"
+variable "azurevm_rg" {
+    description = "The name of the resource group in which to create the resources."
+    type        = string
+    default     = "azurevm-rg"
 }
 
-variable "ssh_public_key_path" {
-  description = "Path to SSH public key"
-  default     = "~/.ssh/id_rsa.pub"
+variable "azurevm_location" {
+    description = "The Azure region in which to create the resources."
+    type        = string
+    default     = "West Europe"
+}
+ 
+variable "azurevm_virtual_network" {
+    description = "The name of the virtual network to create."
+    type        = string
+    default     = "azurevm-vnet"
 }
 
-variable "allowed_ssh_cidr" {
-  description = "CIDR allowed to SSH"
-  default     = "0.0.0.0/0"
+variable "azurevm_subnet" {
+    description = "The name of the subnet to create."
+    type        = string
+    default     = "azurevm-subnet"
 }
 
-variable "create_public_ip" {
-  description = "Whether to create public IP"
-  type        = bool
-  default     = false
+variable "azurevm_network_interface" {
+    description = "The name of the network interface to create."
+    type        = string
+    default     = "azurevm-nic"
 }
 
-variable "azurerm_virtual_network_address_space" {
-  description = "Address space for the virtual network"
-  default     = ["10.0.0.0/16"]
+variable "azurevm_virtual_machine" {
+    description = "The name of the virtual machine to create."
+    type        = string
+    default     = "azurevm-vm"
 }
 
-variable "azurerm_network_interface" {
-  description = "Whether to create network interface"
-  type        = bool
-  default     = true
-}
 
-variable "use_cloud_init" {
-  description = "Enable cloud-init bootstrap"
-  type        = bool
-  default     = false
-}
+    
+
+
+ 
