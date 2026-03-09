@@ -1,6 +1,6 @@
 
 resource "azurerm_resource_group" "example" {
-  name     = "var.azurevm_rg}"
+  name     = "var.azurevm_rg"
   location = "var.azurevm_location"
 }
 

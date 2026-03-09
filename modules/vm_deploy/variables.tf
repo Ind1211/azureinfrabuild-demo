@@ -54,9 +54,3 @@ variable "azurevm_virtual_machine" {
     type        = string
     default     = "azurevm-vm"
 }
-
-
-    
-
-
- 
