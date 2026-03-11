@@ -2,7 +2,7 @@ name: Terraform Azure Deployment
 on:
    push:
      paths:
-       - azure-vm
+       - 'azure-vm/**'
   
 
 jobs:
